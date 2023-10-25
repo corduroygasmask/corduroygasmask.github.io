@@ -6,7 +6,7 @@ A show/hide solution for hand-coded HTML email using [Liquid Script](https://sho
 
 _Benefits_
 
-
+explain explain explain 
 
 _Implementation_
 
@@ -19,5 +19,6 @@ To an existing template, add this block to your CSS in the head:
 	.ez_show_hide_desktop { display: none!important; }
 	.SetW320 { width: 320px!important; height: auto!important; } 
 	.SetW300 { width: 300px!important; height: auto!important; }
-}```
+}
+```
 
