@@ -4,11 +4,11 @@ Solutions created by Roger Farley
 # EZ SHOW HIDE
 A show/hide solution for hand-coded HTML email using [Liquid Script](https://shopify.github.io/liquid/)
 
-_Benefits_
+###Benefits
 
 explain explain explain 
 
-_Implementation_
+###Implementation
 
 To an existing template, add this block to your CSS in the head:
 
@@ -22,3 +22,6 @@ To an existing template, add this block to your CSS in the head:
 }
 ```
 
+# BLOCKS
+Tested blocks of HTML code that can be pulled into HTML email for use in many situations.
+_work in progress_
