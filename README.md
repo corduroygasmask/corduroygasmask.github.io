@@ -6,7 +6,11 @@ A show/hide solution for hand-coded HTML email using [Liquid Script](https://sho
 
 ### Benefits
 
-explain explain explain 
+With hand-coded HTML email content, while adaptive/responsive code is ideal, at times separate content may be needed for desktop and mobile viewing experiences. 
+
+When this is the case often hidden content can be overlooked when making updates because of CSS classes that obscure content in an email also obscure it in preview windows.
+
+This solution encapsulates all of those tags and classes behind Liquid Script variables, allowing a visible representation of what will be shown or hidden on various platforms.
 
 ### Implementation
 
@@ -31,16 +35,16 @@ Add this to the beginning of your HTML doc:
 {% assign ez_show_hide_mobile_end = '</div><***!--<***![endif]--***>' %}
 {% assign ez_show_hide_mobile_end = ez_show_hide_mobile_end | replace: '*', '' %}
 ```
-And wrap any desktop/mobile specific code with the variables:
+And wrap any desktop specific code with these variables:
 ```HTML
 {{ez_show_hide_desktop_start}}
 
 	[ DESKTOP ONLY CONTENT ]
 
 {{ez_show_hide_desktop_end}}
-
-
-
+```
+And any mobile specific code with these variables:
+```HTML
 {{ez_show_hide_mobile_start}}
 
 	[ MOBILE ONLY CONTENT ]
@@ -56,3 +60,13 @@ And wrap any desktop/mobile specific code with the variables:
 # BLOCKS
 Tested blocks of HTML code that can be pulled into HTML email for use in many situations.
 _work in progress_
+Simple Table:
+```HTML
+<table border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+```
