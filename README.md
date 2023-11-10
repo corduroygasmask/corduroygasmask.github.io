@@ -70,3 +70,7 @@ Simple Table:
   </tbody>
 </table>
 ```
+# OTHER THINGS TO ADD 
+
+- process of elimination troubleshooting
+- find and replace strategy with Dreamweaver
