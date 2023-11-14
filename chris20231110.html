@@ -64,14 +64,14 @@
 $(document).ready(function() {
 	$("#btn").click(function(){
 		var x = $("#one").val();
-      var a = x.split(/\n/);
-      var r = '';
+		var a = x.split(/\n/);
+		var r = '';
       for(l in a) {
       	if(/^[\d\,]+$/.test(a[l])) {
         	r += a[l] + '\n';
         }
       }
-			$("#two").val(r);
+	  $("#two").val(r);
 	});
 });
 </script>
@@ -79,7 +79,7 @@ $(document).ready(function() {
 
 	<form>
 		<div id="container">
-			<h1>CHris' BS Sifter</h1>
+			<h1>Monitoring Multi-Copy Paste</h1>
 			Everything's made up, nothing matters, here's a tool to make some shit suck less<br><br>
 			Content copied from the one part:<br>
 			<textarea id="one">sign_up_for_deals
