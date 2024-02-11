@@ -1,3 +1,82 @@
+
 <html>
-<h1>test2</h1>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;400;800&display=swap" rel="stylesheet">
+<style>h1 { font-family: 'Noto Sans', sans-serif; font-size: 58px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 52px; text-transform: uppercase; } 
+h3 { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; padding-bottom: 15px; } 
+p { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; padding-bottom: 25px; } 
+.cta { color: #ffffff; font-size: 20px; background: #000000; padding: 10px 20px 10px 20px; text-decoration: none; }
+.cta:hover { background: #5c5c5c; text-decoration: none; }
+small { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-style: normal; font-weight: 400; line-height: 16px; color: #666; } 
+#content{ width: 100%; max-width: 700px; margin: 0px auto; }
+#headline { padding: 80px; text-align: center; }
+#socials { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-style: normal; line-height: 16px; text-align: center; padding: 0 0 40px 0;  }
+#socials a { color: #000; text-decoration: none;}
+#socials a:hover { color: #000; text-decoration: underline; }
+#footer { text-align: center; padding-bottom: 100px; }
+.proj { padding: 0 20px 120px 20px;}
+.proj img{ width: 100%; text-align: center; padding-bottom: 15px; }
+</style>
+<title>proejcts - corduroygaskmask.com</title>
+</head>
+<body>
+<div id="content">
+<div id="headline"><h1>Projects</h1></div>
+<div id="projects"></div>
+<div id="socials"><b>contact:</b> </div>
+<div id="footer"><small>&copy;2023 corduroygasmask.com</small></div>
+</div>
+<script>
+var projects = [	
+  { 
+  	img_path: 'img/pineappleandcomb.gif', 
+    url: 'https://www.amazon.com/gp/product/B084DGDWZV',
+    headline: 'THE MISADVENTURES OF PINEAPPLE AND COMB',
+    body: 'This one time, I made up a story on the spot to tell my kids before bed. I then hand illustrated it and put it into a book.',
+    cta: 'available at amazon'
+    },
+	{ 
+		img_path: 'img/tmtz.jpg', 
+		url: 'https://www.amazon.com/Teaching-Math-Zombies-Kyle-Bagsby/dp/B0939V84Q1',
+		headline: 'TEACHING MATH TO ZOMBIES',
+		body: 'Everyone knows that 4+4=8. Or do they? Teaching math to zombies is not always as easy as it sounds. Sometimes you lose an arm and sometimes your students run away chasing after a brain shaped cloud. -- Written by Kyle Bagsby, I just handled the illustration, layouts and book setup.',
+		cta: 'available at amazon'
+	},
+  { 
+  	img_path: 'img/cover_thumb.png', 
+    url: 'https://thebiblebuteverywordisfuck.com/',
+    headline: 'THE BIBLE BUT EVERY WORD IS FUCK',
+    body: 'Not to put too fine a point on it, but this is the bible, with every word changed to fuck...',
+    cta: 'thebiblebuteverywordisfuck.com'
+    }
+];
+for(proj in projects) {
+	let tp = projects[proj]
+	$('#projects').append(`\
+		<div class="proj">\
+		<img src="${tp.img_path}"/>\
+		<h3>${tp.headline}</h3>\
+		<p>${tp.body}</p>\
+		<p><a class='cta' href="${tp.url}">${tp.cta}</a>\
+		</div>`)
+}
+var socials = [
+	{ label: 'eml', url: 'mailto:rfarley1@gmail.com' }, 
+	{ label: 'face', url: 'https://www.facebook.com/corduroygasmask' },
+	{ label: 'inst', url: 'https://www.instagram.com/corduroygasmask/' },
+//	{ label: 'inst2', url: 'https://www.instagram.com/thedualityofrobot/' },
+	{ label: 'twit', url: 'https://twitter.com/corduroygasmask' },
+	{ label: 'linked', url: 'https://www.linkedin.com/in/rfarley1/' },
+];
+var soc_links = [];
+for(soc in socials) {
+	let s = socials[soc];
+	soc_links.push(`<a href="${s.url}">${s.label}</a>`);
+}
+$('#socials').append(soc_links.join(" | "));
+</script>
+</body>
 </html>
