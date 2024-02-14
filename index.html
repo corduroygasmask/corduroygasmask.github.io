@@ -20,13 +20,13 @@ small { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-style: norma
 .proj { padding: 0 20px 120px 20px;}
 .proj img{ width: 100%; text-align: center; padding-bottom: 15px; }
 </style>
-<title>proejcts - corduroygaskmask.com</title>
+<title>corduroygaskmask.com</title>
 </head>
 <body>
 <div id="content">
 <div id="headline"><h1>Projects</h1></div>
 <div id="projects"></div>
-<div id="socials"><b>contact:</b> </div>
+<div id="socials"><b>links:</b> </div>
 <div id="footer"><small>&copy;2023 corduroygasmask.com</small></div>
 </div>
 <script>
@@ -63,14 +63,28 @@ for(proj in projects) {
 		<p><a class='cta' href="${tp.url}">${tp.cta}</a>\
 		</div>`)
 }
+
+$('#projects').append(`<div class="proj"><iframe width="560" height="315" src="https://www.youtube.com/embed/NlSzO_xpzZc?si=H_x90pWWEf1AuPHA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><h3>RANDOM VIDEO PROJECTS</h3><p>I like going to places and pointing cameras as things.</p><p><a class='cta' href="https://www.youtube.com/channel/UCYKLY3OlRk5l1MIfjAx-s4w">youtube</a>&nbsp;<a class='cta' href="https://www.tiktok.com/@corduroygasmask?is_from_webapp=1&sender_device=pc">tiktok</a></div>`);
+
+
+
+
+
+
 var socials = [
-	{ label: 'eml', url: 'mailto:rfarley1@gmail.com' }, 
-	{ label: 'face', url: 'https://www.facebook.com/corduroygasmask' },
-	{ label: 'inst', url: 'https://www.instagram.com/corduroygasmask/' },
+	{ label: 'email', url: 'mailto:rfarley1@gmail.com' }, 
+	{ label: 'website', url: 'https://corduroygasmask.com' },
+	{ label: 'git', url: 'https://corduroygasmask.github.io' },
+	{ label: 'facebook', url: 'https://www.facebook.com/corduroygasmask' },
+	{ label: 'instagram', url: 'https://www.instagram.com/corduroygasmask/' },
+	{ label: 'youtube', url: 'https://www.youtube.com/channel/UCYKLY3OlRk5l1MIfjAx-s4w' },
+	{ label: 'tiktok', url: 'https://www.tiktok.com/@corduroygasmask?is_from_webapp=1&sender_device=pc' },
 //	{ label: 'inst2', url: 'https://www.instagram.com/thedualityofrobot/' },
-	{ label: 'twit', url: 'https://twitter.com/corduroygasmask' },
-	{ label: 'linked', url: 'https://www.linkedin.com/in/rfarley1/' },
+	{ label: 'i don\'t use twiter', url: 'https://twitter.com/corduroygasmask' },
+	{ label: 'linkedin', url: 'https://www.linkedin.com/in/rfarley1/' },
 ];
+
+
 var soc_links = [];
 for(soc in socials) {
 	let s = socials[soc];
