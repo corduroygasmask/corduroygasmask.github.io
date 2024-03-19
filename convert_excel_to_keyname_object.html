@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        		body{
+			background: #111111;
+			}
+		* { 
+			font-family: 'Montserrat', sans-serif; 
+			color: #111111;
+			}
+		#container { 
+			width: 600px;
+			padding: 40px; 
+			margin: 40px auto;
+			background: #DDDDDD ;
+			}
+		h1{
+			font-size: 46px;
+			line-height: 90%;
+			color: #FF4136;
+			padding-top:0;
+			margin-top:0;
+		}
+		#idvar, #one, #two, #btn { 
+			border: 1px solid #111111;
+			font-size: 14px;
+			padding:10px;
+			color: #111111;
+			}
+		#one, #two {
+			width: 550px; 
+			height: 150px;
+			}
+		#btn{
+			border: 1px solid #FF4136;
+			color: #FF4136;
+			background: #fff;
+			font-weight: bold;
+			font-size: 28px;
+			padding: 15px;
+		}
+		#sig{
+			text-align: center;
+			padding: 30px 0 0 0;
+			}
+		#sig a{
+			color: #111111;
+			text-decoration: none;
+			}
+		@media only screen and (max-width: 600px) {
+			#container{
+				width: 300px!important;
+				}
+			#idvar, #one, #two {
+				width:280px!important;
+				}
+		} 
+    </style>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
+	<form>
+		<div id="container"> 
+			<h1>Key Name JSON Conversion</h1>
+			Converts a spreadsheet with 'key' in A1, and header values in the rest of A<br><br>
+			Content copied from the one part:<br>
+			<textarea id="one">kkey_name	link_1	link_2
+version1	google.com	bobwehadababyitsaboy.com
+version2	twitter.com	amishwebsite.com</textarea><br/><br/>
+			<input id="btn" type="button" value="submit"/><br/><br/>
+			Hit submit, and get your other shit here:<br>
+			<textarea id="two"></textarea>
+			<!--<div id="sig">v0.0.1 | 20231108 | created by<a href="mailto:rfarley1@gmail.com">_rogerfarley</a></div>-->
+		</div>
+	</form>	
+    <script>
+        $(document).ready(function() {
+	$("#btn").click(function(){
+		var x = $("#one").val();
+		var a = x.split(/\n/);
+    
+		var r = ''; //return
+    
+    
+    
+      for(var r in a) {
+      	var r_s = r.split(/\t/);
+        for(var t_r in r_s) {
+        	console.log(t_r)
+				}
+      }
+      
+      
+      
+	  $("#two").val(r);
+	});
+});
+    </script>
+</body>
+</html>
