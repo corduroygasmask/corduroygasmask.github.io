@@ -69,9 +69,10 @@
 			<h1>Convert Excel Values to a Keyname JSON Object</h1>
 			Converts a spreadsheet with 'key' in A1, and header values in the rest of A<br><br>
 			Content copied from the one part:<br>
-			<textarea id="one">key_name	link_1	link_2
-version1	google.com	bobwehadababyitsaboy.com
-version2	twitter.com	amishwebsite.com</textarea><br/><br/>
+			<textarea id="one">key_name	link1	link2	text1
+version1	google.com	bobwehadababyitsaboy.com	some text in "quotes"
+version2	twitter.com	amishwebsite.com	other text
+                </textarea><br/><br/>
 			<input id="btn" type="button" value="submit"/><br/><br/>
 			Hit submit, and get your other shit here:<br>
 			<textarea id="two"></textarea>
@@ -84,6 +85,7 @@ version2	twitter.com	amishwebsite.com</textarea><br/><br/>
         $(document).ready(function() {
             $("#btn").click(function(){
                 var input_box_a = $("#one").val();
+                input_box_a = input_box_a.replace(/\"/g,"\\\"").replace(/\'/g,'\\\'');
                 var rows = input_box_a.split(/\n/);
 
                 var value_to_return = ''; //return
