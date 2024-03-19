@@ -34,6 +34,7 @@
 		#one, #two {
 			width: 550px; 
 			height: 150px;
+            font-family: Courier;
 			}
 		#btn{
 			border: 1px solid #FF4136;
@@ -99,7 +100,7 @@ version2	twitter.com	amishwebsite.com</textarea><br/><br/>
                     let this_row_split = this_row.split(/\t/g);
                     for(var this_cell in this_row_split) {
                         if(this_cell==0) {
-                            value_to_return += this_row_split[0] + ': { ';
+                            value_to_return += '\t' + this_row_split[0] + ': { ';
                         } else {
                             value_to_return += header_row_split[this_cell] + ': "' + this_row_split[this_cell] + '", '
                         } 
