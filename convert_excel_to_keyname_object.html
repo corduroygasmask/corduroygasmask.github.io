@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>cgmtools</title>
     <style>
         		body{
 			background: #111111;
@@ -65,10 +65,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
 	<form>
 		<div id="container"> 
-			<h1>Key Name JSON Conversion</h1>
+			<h1>Convert Excel Values to a Keyname JSON Object</h1>
 			Converts a spreadsheet with 'key' in A1, and header values in the rest of A<br><br>
 			Content copied from the one part:<br>
-			<textarea id="one">kkey_name	link_1	link_2
+			<textarea id="one">key_name	link_1	link_2
 version1	google.com	bobwehadababyitsaboy.com
 version2	twitter.com	amishwebsite.com</textarea><br/><br/>
 			<input id="btn" type="button" value="submit"/><br/><br/>
@@ -77,28 +77,50 @@ version2	twitter.com	amishwebsite.com</textarea><br/><br/>
 			<!--<div id="sig">v0.0.1 | 20231108 | created by<a href="mailto:rfarley1@gmail.com">_rogerfarley</a></div>-->
 		</div>
 	</form>	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script>
         $(document).ready(function() {
-	$("#btn").click(function(){
-		var x = $("#one").val();
-		var a = x.split(/\n/);
-    
-		var r = ''; //return
-    
-    
-    
-      for(var r in a) {
-      	var r_s = r.split(/\t/);
-        for(var t_r in r_s) {
-        	console.log(t_r)
-				}
-      }
-      
-      
-      
-	  $("#two").val(r);
-	});
-});
+            $("#btn").click(function(){
+                var input_box_a = $("#one").val();
+                var rows = input_box_a.split(/\n/);
+
+                var value_to_return = ''; //return
+                
+                //extract a preserve the header row
+                var header_row = rows[0];
+                var header_row_split = header_row.split(/\t/g)
+                rows = rows.slice(1);
+                console.log(rows);
+
+                // loop through rows
+                for(var row in rows) {
+                    let this_row = rows[row];
+                    let this_row_split = this_row.split(/\t/g);
+                    for(var this_cell in this_row_split) {
+                        if(this_cell==0) {
+                            value_to_return += this_row_split[0] + ': { ';
+                        } else {
+                            value_to_return += header_row_split[this_cell] + ': "' + this_row_split[this_cell] + '", '
+                        } 
+                        //create a sample call
+                        if(this_cell==1 && row==0) { 
+                            var example_usage = 'data.' + this_row_split[0] + '.' + header_row_split[this_cell];
+                        }                      
+                    }
+                    
+                    value_to_return = value_to_return.replace(/\, $/,'')
+                    value_to_return += ' },\n'
+                }
+                value_to_return = value_to_return.replace(/\}\,$/,'');
+                value_to_return = "var data = {\n" + value_to_return + "}"
+
+                value_to_return += "\n\n//Example Usage: \nconsole.log(" + example_usage +  ")"
+
+
+                $("#two").val(value_to_return);
+            });
+        });
     </script>
 </body>
 </html>
