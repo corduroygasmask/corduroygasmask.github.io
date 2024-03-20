@@ -3,9 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>cgmtools</title>
+    <style>
+        		body{
+			background: #111111;
+			}
+		* { 
+			font-family: 'Montserrat', sans-serif; 
+			color: #111111;
+			}
+		#container { 
+			width: 600px;
+			padding: 40px; 
+			margin: 40px auto;
+			background: #DDDDDD ;
+			}
+		h1{
+			font-size: 46px;
+			line-height: 90%;
+			color: #FF4136;
+			padding-top:0;
+			margin-top:0;
+		}
+		#idvar, #one, #two, #btn { 
+			border: 1px solid #111111;
+			font-size: 14px;
+			padding:10px;
+			color: #111111;
+			}
+		#one, #two {
+			width: 550px; 
+			height: 150px;
+            font-family: Courier;
+			}
+		#btn, #cpy{
+			border: 1px solid #FF4136;
+			color: #FF4136;
+			background: #fff;
+			font-weight: bold;
+			font-size: 28px;
+			padding: 15px;
+		}
+		#sig{
+			text-align: center;
+			padding: 30px 0 0 0;
+			}
+		#sig a{
+			color: #111111;
+			text-decoration: none;
+			}
+		@media only screen and (max-width: 600px) {
+			#container{
+				width: 300px!important;
+				}
+			#idvar, #one, #two {
+				width:280px!important;
+				}
+		} 
+    </style>
 </head>
 <body>
-    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
+	<form>
+		<div id="container"> 
+			<h1>unhinged commit message generator</h1>
+			Don't just settle for 'aaa' or 'blaaaah', if it's going to be nonsense, at least make it weird.<br><br>
+			<textarea id="one"></textarea><br/><br/>
+			<input id="btn" type="button" value="↻"/> <input id="cpy" type="button" value="📋"/> <span id="cpy_conf" style="display: none;">Copied to clipboard</span><br/><br/>
+			<div id="sig">v0.0.1 | 20240319 | created by<a href="mailto:rfarley1@gmail.com">_rogerfarley</a></div>
+		</div>
+	</form>	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#btn").click(function(){
+				const s = [ "The [noun] jumped over the [noun].","She [verb] the [noun] with precision.","A [noun] in need is a [noun] indeed.","He [verb] his way through the crowd.","The [noun] flew high in the sky.","They [verb] together like peas in a pod.","The [noun] whispered secrets in the wind.","She carefully [verb] the delicate flower.","His [noun] was as sharp as a knife.","The [noun] danced gracefully under the moonlight.","He [verb] his way to victory.","A journey of a thousand [noun] begins with a single step.","The [noun] howled in the night.","She [verb] the ball with finesse.","The [noun] shimmered in the sunlight.","They [verb] through the forest, chasing adventure.","He found solace in the [noun].","She [verb] through her problems with determination.","The [noun] glistened with morning dew.","They [verb] their way out of trouble.","The [noun] sang sweet melodies in the breeze.","He [verb] his heart out to the world.","The [noun] stood tall against the storm.","She [verb] her way into his heart.","The [noun] rustled in the gentle wind.","They [verb] through the pages of history.","The [noun] swirled in a whirlwind of color.","He [verb] his way through adversity.","The [noun] whispered tales of old.","She [verb] with grace and elegance.","The [noun] sparkled like diamonds in the sun.","He [verb] across the finish line, triumphant.","The [noun] bloomed in the warmth of spring.","She [verb] her dreams into reality.","The [noun] roared with power and might.","They [verb] across the dance floor, lost in each other's eyes.","The [noun] swam gracefully through the clear waters.","He [verb] the mountain, conquering his fears.","The [noun] whispered secrets to the night.","She [verb] her way through the challenges ahead.","The [noun] soared through the clouds.","They [verb] through the maze, searching for the exit.","The [noun] glimmered in the moonlight.","He [verb] his way to the top, never looking back.","The [noun] bloomed in the garden, a symbol of hope.","She [verb] her way through the tangled mess.","The [noun] danced in the rain, carefree and joyful.","He [verb] his way through the dense forest.","The [noun] whispered secrets to the stars.","She [verb] her way into his thoughts, never to leave."];
+				const n = [ "gazebo","quasar","platypus","sphinx","noodle","gargoyle","tofu","umbrella","flamingo","quokka","gizmo","narwhal","juggernaut","hologram","zephyr","kaleidoscope","penguin","vortex","thunderstorm","bungalow","goblin","flotsam","jetsam","narcolepsy","marzipan","wombat","rhubarb","galaxy","octopus","whirlwind","glockenspiel","quicksand","hurricane","flibbertigibbet","snorkel","sasquatch","poltergeist","ziggurat","blizzard","mozzarella","lemur","eclipse","tchotchke","gondola","macadamia","lagoon","sycamore","whirlpool","hovercraft","wombat","vuvuzela","flamingo","gazelle","loquat","bamboo","mozzarella","gnocchi","quokka","sassafras","salamander","yurt","xenon","jackalope","hazelnut","chimera","mandrake","nectarine","opossum","rhubarb","sabretooth","tarragon","vermilion","wisteria","xenophobia","yuletide","zeppelin","acropolis","boulevard","candelabra","dodecahedron","eucalyptus","flamenco","gazpacho","holograph","iguana","jamboree","kamikaze","leprechaun","magnolia","nirvana","ostentation","paradox","quintessence","rampart","serendipity","trapezoid","upheaval","valediction","whippersnapper","xenophobia","yarmulke","zeppelin"];
+				const v = [ "gargle","squelch","flabbergast","snorkel","waddle","guffaw","frolic","smooch","boggle","sizzle","blubber","gurgle","mooch","kerfuffle","whinge","splurge","flounce","bask","chortle","squabble","piddle","snicker","splosh","whiffle","fiddle","clamber","scuttle","munch","guzzle","snooze","scamper","prance","gawp","skedaddle","dawdle","snuffle","galumph","grumble","jostle","scamper","giggle","flounce","gloat","sashay","titter","smirk","swagger","fidget","lollygag","flounder","slink","cavort","romp","slurp","gobble","nuzzle","whimper","purr","prattle","toddle","swoon","wriggle","sputter","meander","frolic","piddle","snigger","smirk","blunder","splutter","glimmer","fizzle","shuffle","stumble","waddle","flap","flail","giggle","guffaw","hiccup","glimpse","snicker","squawk","titter","mosey","bop","tromp","titter","waddle","prance","snicker","mope","lumber","chuckle","sputter","sashay","guffaw","waddle","frolic","dawdle","prance","whimper","toddle","gargle"];
+				
+                function r(a){ return a[Math.floor(Math.random()*a.length)]; }
+                function gs() { return r(s).replace(/\[noun\]/g,r(n)).replace(/\[verb\]/g,r(v)); }
+                
+                $("#one").val(gs());
+            });
+            $("#btn").click();
+            $('#cpy').click(function() {
+                var text = $('#one');
+                text.select();
+                document.execCommand('copy');
+                $("#cpy_conf").show();
+                setTimeout(  function() { $("#cpy_conf").fadeOut(500) }, 500);                
+            });
+        });
+    </script>
 </body>
 </html>
