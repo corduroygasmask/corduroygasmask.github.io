@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <main>
+        <div id="stats"></div>
+        <div id="options">
+            <button id="add_money">add money</button>
+        </div>
+
+    </main>
+	<script>
+
+        //create initial stats & options
+        var stats = {}
+        stats.money = 250;
+        stats.sugar = 3;
+
+        var purchase = {
+            lemons: 5,
+            limes: 5,
+            sugar: 1,
+            table: 25,
+            cart: 1500,
+            liquor_liscense: 750,
+            rum: 30,
+            whiskey: 30,
+            tequila: 30
+        }
+
+
+        const run_game = () => {
+            var stats_table = '<table id="stats">';
+            for(stat in stats){ stats_table+='<tr><td>'+stat+'</td><td>'+stats[stat]+'</td></tr>'; }
+            stats_table += '</table>';
+            $('#stats').html(stats_table);
+        }
+
+        $('button').on( "click", function() {
+            stats.money += 50;
+        } );
+
+
+
+        setInterval(run_game, 50);
+
+    </script>
+  </body>
+</html>
