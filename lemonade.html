@@ -38,8 +38,22 @@
             tequila: 30
         }
 
+        const t = (id,v) => { return '<table id="' + id + '">' + v + '</table>'}
+        const tr = (a,b) => { return '<tr><td>'+a+'</td><td>'+b+'</td></tr>' }
+
+        const refresh_stats = () =>{
+
+        }
+
+        const refresh_options = () => {
+
+        }
 
         const run_game = () => {
+            refresh_options();
+            refresh_stats();
+
+            
             var stats_table = '<table id="stats">';
             for(stat in stats){ stats_table+='<tr><td>'+stat+'</td><td>'+stats[stat]+'</td></tr>'; }
             stats_table += '</table>';

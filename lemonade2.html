@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemonade Stand Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        #game-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        button, input[type="number"] {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #upgrades-container, #inventory-container {
+            margin-top: 20px;
+        }
+        .upgrade, .inventory-item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Lemonade Stand</h1>
+        <p>Money: $<span id="money">100</span></p>
+        <p>Lemonades Sold: <span id="lemonades-sold">0</span></p>
+        <p>Lemonade Price: $<input type="number" id="lemonade-price" value="5" step="0.1"></p>
+        <button id="make-lemonade">Make Lemonade</button>
+        <div id="inventory-container"></div>
+        <div id="upgrades-container"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let money = 100;
+            let lemonadePrice = 5;
+            let lemonadeRate = 0; // lemonade per second made by workers
+            let managerActive = false;
+            let lemonadesSold = 0;
+            let inventory = {
+                "sugar": { "name": "Sugar", "quantity": 0, "cost": 10, "makes": 48 },
+                "ice": { "name": "Ice", "quantity": 0, "cost": 10, "makes": 48 },
+                "water": { "name": "Water", "quantity": 0, "cost": 10, "makes": 80 },
+                "lemons": { "name": "Lemons", "quantity": 0, "cost": 10, "makes": 12 }
+            };
+            let upgrades = {
+                "sugar": { "name": "Buy Sugar", "cost": 10, "multiplier": 1.5, "purchased": false },
+                "ice": { "name": "Buy Ice", "cost": 20, "multiplier": 2, "purchased": false },
+                "water": { "name": "Buy Water", "cost": 30, "multiplier": 2.5, "purchased": false },
+                "lemons": { "name": "Buy Lemons", "cost": 50, "multiplier": 3, "purchased": false },
+                "liquor_license": { "name": "Buy Liquor License", "cost": 100, "multiplier": 5, "purchased": false },
+                "worker": { "name": "Hire Worker", "cost": 50, "rate": 1, "purchased": false },
+                "manager": { "name": "Hire Manager", "cost": 100, "purchased": false }
+            };
+
+            function updateDisplay() {
+                $('#money').text(money.toFixed(2));
+                $('#lemonades-sold').text(lemonadesSold);
+                lemonadePrice = parseFloat($('#lemonade-price').val());
+                $('#inventory-container').empty(); // Clear existing inventory items
+                for (let key in inventory) {
+                    let lemonadeCount = inventory[key].quantity;
+                    $('#inventory-container').append(`
+                        <div class="inventory-item">
+                            <p>${inventory[key].name}: ${lemonadeCount} lemonades</p>
+                            <button class="buy-inventory" data-item="${key}" ${money < inventory[key].cost ? 'disabled' : ''}>Buy ${inventory[key].name} ($${inventory[key].cost})</button>
+                        </div>
+                    `);
+                }
+                $('#upgrades-container').empty(); // Clear existing upgrades
+                for (let key in upgrades) {
+                    if (!upgrades[key].purchased && (key !== "liquor_license" || lemonadesSold >= 100)) {
+                        $('#upgrades-container').append(`
+                            <div class="upgrade">
+                                <p>${upgrades[key].name} - $${upgrades[key].cost}</p>
+                                <button class="buy-upgrade" data-upgrade="${key}" ${money < upgrades[key].cost ? 'disabled' : ''}>Buy</button>
+                            </div>
+                        `);
+                    }
+                }
+            }
+
+            function autoMakeLemonade() {
+                if (lemonadeRate > 0) {
+                    if (canMakeLemonade()) {
+                        makeLemonade();
+                    }
+                    updateDisplay();
+                }
+            }
+
+            function canMakeLemonade() {
+                return inventory.sugar.quantity >= 1 && inventory.ice.quantity >= 1 && inventory.water.quantity >= 1 && inventory.lemons.quantity >= 1;
+            }
+
+            function makeLemonade() {
+                if (canMakeLemonade()) {
+                    inventory.sugar.quantity -= 1;
+                    inventory.ice.quantity -= 1;
+                    inventory.water.quantity -= 1;
+                    inventory.lemons.quantity -= 1;
+                    money += lemonadePrice;
+                    lemonadesSold += 1;
+                    updateDisplay();
+                } else {
+                    alert("Not enough ingredients to make lemonade!");
+                }
+            }
+
+            function autoBuyIngredients() {
+                if (managerActive) {
+                    for (let key in inventory) {
+                        if (inventory[key].quantity < 1 && money >= inventory[key].cost) {
+                            money -= inventory[key].cost;
+                            inventory[key].quantity += inventory[key].makes;
+                        }
+                    }
+                    updateDisplay();
+                }
+            }
+
+            $('#make-lemonade').click(function() {
+                makeLemonade();
+            });
+
+            $('#upgrades-container').on('click', '.buy-upgrade', function() {
+                let upgradeKey = $(this).data('upgrade');
+                let upgrade = upgrades[upgradeKey];
+                if (money >= upgrade.cost) {
+                    money -= upgrade.cost;
+                    if (upgradeKey === "worker") {
+                        lemonadeRate += upgrade.rate;
+                    } else if (upgradeKey === "manager") {
+                        managerActive = true;
+                    } else {
+                        lemonadePrice *= upgrade.multiplier;
+                    }
+                    upgrades[upgradeKey].purchased = true;
+                    updateDisplay();
+                }
+            });
+
+            $('#inventory-container').on('click', '.buy-inventory', function() {
+                let itemKey = $(this).data('item');
+                let item = inventory[itemKey];
+                if (money >= item.cost) {
+                    money -= item.cost;
+                    inventory[itemKey].quantity += item.makes;
+                    updateDisplay();
+                }
+            });
+
+            $('#lemonade-price').on('change', function() {
+                lemonadePrice = parseFloat($(this).val());
+            });
+
+            setInterval(autoMakeLemonade, 1000);
+            setInterval(autoBuyIngredients, 1000);
+
+            updateDisplay();
+        });
+    </script>
+</body>
+</html>
