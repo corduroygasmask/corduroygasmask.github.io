@@ -1,97 +1,33 @@
-
-<html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;400;800&display=swap" rel="stylesheet">
-<style>h1 { font-family: 'Noto Sans', sans-serif; font-size: 58px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 52px; text-transform: uppercase; } 
-h3 { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; padding-bottom: 15px; } 
-p { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; padding-bottom: 25px; } 
-.cta { color: #ffffff; font-size: 20px; background: #000000; padding: 10px 20px 10px 20px; text-decoration: none; }
-.cta:hover { background: #5c5c5c; text-decoration: none; }
-small { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-style: normal; font-weight: 400; line-height: 16px; color: #666; } 
-#content{ width: 100%; max-width: 700px; margin: 0px auto; }
-#headline { padding: 80px; text-align: center; }
-#socials { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-style: normal; line-height: 16px; text-align: center; padding: 0 0 40px 0;  }
-#socials a { color: #000; text-decoration: none;}
-#socials a:hover { color: #000; text-decoration: underline; }
-#footer { text-align: center; padding-bottom: 100px; }
-.proj { padding: 0 20px 120px 20px;}
-.proj img{ width: 100%; text-align: center; padding-bottom: 15px; }
-</style>
-<title>corduroygaskmask.com</title>
-</head>
-<body>
-<div id="content">
-<div id="headline"><h1>Projects</h1></div>
-<div id="projects"></div>
-<div id="socials"><b>links:</b> </div>
-<div id="footer"><small>&copy;<script>var d = new Date(); document.write(d.getFullYear());</script> corduroygasmask.com</small></div>
-</div>
-<script>
-var projects = [	
-  	{ 
-  	img_path: 'img/pineappleandcomb.gif', 
-    url: 'https://www.amazon.com/gp/product/B084DGDWZV',
-    headline: 'THE MISADVENTURES OF PINEAPPLE AND COMB',
-    body: 'This one time, I made up a story on the spot to tell my kids before bed. I then hand illustrated it and put it into a book.',
-    cta: 'available at amazon'
-    },
-	{ 
-	img_path: 'img/tmtz.jpg', 
-	url: 'https://www.amazon.com/Teaching-Math-Zombies-Kyle-Bagsby/dp/B0939V84Q1',
-	headline: 'TEACHING MATH TO ZOMBIES',
-	body: 'Everyone knows that 4+4=8. Or do they? Teaching math to zombies is not always as easy as it sounds. Sometimes you lose an arm and sometimes your students run away chasing after a brain shaped cloud. -- Written by Kyle Bagsby, I just handled the illustration, layouts and book setup.',
-	cta: 'available at amazon'
-	},
-  	{ 
-  	img_path: 'img/cover_thumb.png', 
-    url: 'http://thebiblebuteverywordisfuck.com/',
-    headline: 'THE BIBLE BUT EVERY WORD IS FUCK',
-    body: 'Not to put too fine a point on it, but this is the bible, with every word changed to fuck...',
-    cta: 'thebiblebuteverywordisfuck.com'
-    }
-];
-for(proj in projects) {
-	let tp = projects[proj]
-	$('#projects').append(`\
-		<div class="proj">\
-		<img src="${tp.img_path}"/>\
-		<h3>${tp.headline}</h3>\
-		<p>${tp.body}</p>\
-		<p><a class='cta' href="${tp.url}">${tp.cta}</a>\
-		</div>`)
-}
-
-//$('#projects').append(`<div class="proj"><iframe width="560" height="315" src="https://www.youtube.com/embed/NlSzO_xpzZc?si=H_x90pWWEf1AuPHA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><h3>RANDOM VIDEO PROJECTS</h3><p>I like going to places and pointing cameras as things.</p><p><a class='cta' href="https://www.youtube.com/channel/UCYKLY3OlRk5l1MIfjAx-s4w">youtube</a>&nbsp;<a class='cta' href="https://www.tiktok.com/@corduroygasmask?is_from_webapp=1&sender_device=pc">tiktok</a></div>`);
-
-
-
-
-
-
-var socials = [
-	{ label: 'bluesky', url: 'https://bsky.app/profile/corduroygasmask.bsky.social' },
-//	{ label: 'email', url: 'mailto:rfarley1@gmail.com' }, 
-//	{ label: 'website', url: 'https://corduroygasmask.com' },
-//	{ label: 'git', url: 'https://corduroygasmask.github.io' },
-//	{ label: 'facebook', url: 'https://www.facebook.com/corduroygasmask' },
-//	{ label: 'instagram', url: 'https://www.instagram.com/corduroygasmask/' },
-	{ label: 'youtube', url: 'https://www.youtube.com/channel/UCYKLY3OlRk5l1MIfjAx-s4w' },
-	{ label: 'tiktok', url: 'https://www.tiktok.com/@corduroygasmask?is_from_webapp=1&sender_device=pc' },
-//	{ label: 'inst2', url: 'https://www.instagram.com/thedualityofrobot/' },
-//	{ label: 'i don\'t use twiter', url: 'https://twitter.com/corduroygasmask' },
-//	{ label: 'linkedin', url: 'https://www.linkedin.com/in/rfarley1/' },
-];
- 
-
-var soc_links = [];
-for(soc in socials) {
-	let s = socials[soc];
-	soc_links.push(`<a href="${s.url}">${s.label}</a>`);
-}
-$('#socials').append(soc_links.join(" | "));
-</script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <style>
+		@import url('https://fonts.googleapis.com/css2?family=Barrio&display=swap');
+		body{ background: #3FABAF; padding: 3vw; }
+		h1 { font-size: 3em; line-height: 80%; font-family: "Barrio", system-ui; margin: 0; padding: 0; color: #222222; }
+		h2 { font-size: 3em; line-height: 80%; font-family: "Barrio", system-ui; margin: 0; padding: 0; color: #222222; padding-top: 20px;}
+		p { font-size: 1.5em; text-transform: uppercase; font-family: system-ui; margin: 0; padding: 0; color: #222222; }
+		a { text-decoration: none; }
+		small { font-family: system-ui; text-transform: uppercase; display: block; padding-top: 40px; }
+		a:link, a:visited, a:active { color: #F7EFE5; }
+		a:hover { color: #FD5825; }
+	</style>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+		<h1>corduroygasmask</h1>
+		<p>what does it mean? it's nonsense, just like most things. but choosing it did mean i could get a top level domain in twenty twenty whatever year it was that i chose it.<p>
+		<h2>Social nonsense</h2>
+		<p><a href="https://bsky.app/profile/corduroygasmask.bsky.social">bluesky</a>, <a href="https://www.youtube.com/channel/UCYKLY3OlRk5l1MIfjAx-s4w">youtube</a>, <a href="https://www.tiktok.com/@corduroygasmask">tiktok</a>.</p>
+		<h2>project nonsense</h2>
+		<p>	One time I wrote and illustrated a <a href="https://www.amazon.com/gp/product/B084DGDWZV">kids book</a>, illustrated <a href="https://www.amazon.com/Teaching-Math-Zombies-Kyle-Bagsby/dp/B0939V84Q1">another</a>, and rewrote the <a href="http://thebiblebuteverywordisfuck.com/">bible</a> in my own way.</p>
+		<small>&copy;<script>document.write(new Date().getFullYear());</script> corduroygasmask.com</small>
+    </main>
+    <!-- <script src="index.js"></script> -->
+  </body>
 </html>
