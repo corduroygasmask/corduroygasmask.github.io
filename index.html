@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
+    <title>corduroygasmask.com</title>
     <style>
 		@import url('https://fonts.googleapis.com/css2?family=Barrio&display=swap');
-		body{ background: #3FABAF; padding: 3vw; }
-		h1 { font-size: 3em; line-height: 80%; font-family: "Barrio", system-ui; margin: 0; padding: 0; color: #222222; }
-		h2 { font-size: 3em; line-height: 80%; font-family: "Barrio", system-ui; margin: 0; padding: 0; color: #222222; padding-top: 20px;}
-		p { font-size: 1.5em; text-transform: uppercase; font-family: system-ui; margin: 0; padding: 0; color: #222222; }
-		a { text-decoration: none; }
-		small { font-family: system-ui; text-transform: uppercase; display: block; padding-top: 40px; }
+body { background-color: #45474B; }
+#container { text-align: center; width: 100%; max-width: 600px; margin: 0px auto;  }
+#profile_picture img{ width: 150px; height: 150px; border-radius: 50%; }
+.link{ display: block; border: 2px solid #000; background: #FFF0EE;margin: 10px 0px; padding: 10px; border-radius: 20px; text-decoration: none; color: #111; }
 		a:link, a:visited, a:active { color: #F7EFE5; }
 		a:hover { color: #FD5825; }
 	</style>
@@ -20,14 +18,32 @@
   </head>
   <body>
     <main>
-		<h1>corduroygasmask</h1>
-		<p>what does it mean? it's nonsense, just like most things. but choosing it did mean i could get a top level domain in twenty twenty whatever year it was that i chose it.<p>
-		<h2>Social nonsense</h2>
-		<p><a href="https://bsky.app/profile/corduroygasmask.bsky.social">bluesky</a>, <a href="https://www.youtube.com/channel/UCYKLY3OlRk5l1MIfjAx-s4w">youtube</a>, <a href="https://www.tiktok.com/@corduroygasmask">tiktok</a>.</p>
-		<h2>project nonsense</h2>
-		<p>	One time I wrote and illustrated a <a href="https://www.amazon.com/gp/product/B084DGDWZV">kids book</a>, illustrated <a href="https://www.amazon.com/Teaching-Math-Zombies-Kyle-Bagsby/dp/B0939V84Q1">another</a>, and rewrote the <a href="http://thebiblebuteverywordisfuck.com/">bible</a> in my own way.</p>
-		<small>&copy;<script>document.write(new Date().getFullYear());</script> corduroygasmask.com</small>
+		<div id="container"></div>
     </main>
-    <!-- <script src="index.js"></script> -->
+    <script>const s = {
+profile_img_url:'https://placehold.co/400',
+username:'First Last',
+bio_text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis mauris at neque dignissim pulvinar. ',
+}
+
+const links = [
+  { name: 'instagram', url: 'https://www.instagram.com/permanentpollution/' },
+  { name: 'youtube', url: 'https://www.youtube.com/@corduroygasmask' },
+  { name: 'the bible but every word is fuck', url: 'https://www.amazon.com/dp/B0B923ZMCZ' },
+  { name: 'pineapple and comb', url: 'https://www.amazon.com/gp/product/B084DGDWZV' },
+  { name: 'teaching math to zombies', url: 'https://www.amazon.com/Teaching-Math-Zombies-Kyle-Bagsby/dp/B0939V84Q1' },
+]
+
+function wr(cont) { document.getElementById("container").innerHTML += cont; }
+
+window.addEventListener("load", function() {
+  //profile picture
+  wr(`<p id="profile_picture"><img src="${s.profile_img_url}"></p>`);
+  wr(`<h1>${s.username}</h1>`);
+  wr(`<p id="bio">${s.bio_text}</p>`)
+  for(link in links) { wr(`<p class="link"><a href="${links[link].url}">${links[link].name}</a></p>`); }
+  wr(`<small>&copy; ${new Date().getFullYear()} ${s.username}</small>`)
+})
+	</script>
   </body>
 </html>
