@@ -99,14 +99,8 @@ type2	twitter.com	amishwebsite.com	other text</textarea><br/><br/>
                 for(var row in rows) {
                     let this_row = rows[row];
                     let this_row_split = this_row.split(/\t/g);
+					value_to_return += '{ ';
                     for(var this_cell in this_row_split) {
-                        /*
-						if(this_cell==0) {
-                            value_to_return += '\t' + this_row_split[0] + ': { ';
-                        } else {
-                            value_to_return += header_row_split[this_cell] + ': "' + this_row_split[this_cell] + '", '
-                        } 
-						*/
                         value_to_return += header_row_split[this_cell] + ': "' + this_row_split[this_cell] + '", '
                         //create a sample call
                         if(this_cell==1 && row==0) { 
@@ -118,7 +112,7 @@ type2	twitter.com	amishwebsite.com	other text</textarea><br/><br/>
                     value_to_return += ' },\n'
                 }
                 value_to_return = value_to_return.replace(/\}\,$/,'');
-                value_to_return = "var data = {\n" + value_to_return + "}"
+                value_to_return = "var data = [\n" + value_to_return + "]"
 
                 value_to_return += "\n\n//Example Usage: \nconsole.log(" + example_usage +  ")"
 
