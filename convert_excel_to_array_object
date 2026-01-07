@@ -66,12 +66,12 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
 	<form>
 		<div id="container"> 
-			<h1>Convert Excel Values to a Keyname JSON Object</h1>
-			Converts a spreadsheet with 'key' in A1, and header values in the rest of A<br><br>
+			<h1>Convert Excel Values to a Array JSON Object</h1>
+			Converts a spreadsheet with header values in the first row<br><br>
 			Content copied from the one part:<br>
-			<textarea id="one">key_name	link1	link2	text1
-version1	google.com	bobwehadababyitsaboy.com	some text in "quotes"
-version2	twitter.com	amishwebsite.com	other text</textarea><br/><br/>
+			<textarea id="one">type	link1	link2	text1
+type1	google.com	bobwehadababyitsaboy.com	some text in "quotes"
+type2	twitter.com	amishwebsite.com	other text</textarea><br/><br/>
 			<input id="btn" type="button" value="submit"/><br/><br/>
 			Hit submit, and get your other shit here:<br>
 			<textarea id="two"></textarea>
@@ -100,11 +100,14 @@ version2	twitter.com	amishwebsite.com	other text</textarea><br/><br/>
                     let this_row = rows[row];
                     let this_row_split = this_row.split(/\t/g);
                     for(var this_cell in this_row_split) {
-                        if(this_cell==0) {
+                        /*
+						if(this_cell==0) {
                             value_to_return += '\t' + this_row_split[0] + ': { ';
                         } else {
                             value_to_return += header_row_split[this_cell] + ': "' + this_row_split[this_cell] + '", '
                         } 
+						*/
+                        value_to_return += header_row_split[this_cell] + ': "' + this_row_split[this_cell] + '", '
                         //create a sample call
                         if(this_cell==1 && row==0) { 
                             var example_usage = 'data.' + this_row_split[0] + '.' + header_row_split[this_cell];
