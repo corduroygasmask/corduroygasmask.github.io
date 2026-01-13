@@ -27,7 +27,7 @@
 
 		<b>snark_generator</b><br>
 		<input type="text" id="v"><br><br>
-		<img src="img/sb.jpg" style="width: 100%">
+		<img src="img/sb.jpg" style="width: 100%; max-width: 250px;">
 		<span id="r"></span><br><br>
 
 
@@ -49,14 +49,8 @@ $(document).ready(function() {
 	});
 	var socials = [
 		{ label: 'email', url: 'mailto:rfarley1@gmail.com' }, 
-		{ label: 'website', url: 'https://corduroygasmask.com' },
+		{ label: 'website', url: 'https://corduroygasmask.neocities.com' },
 		{ label: 'git', url: 'https://corduroygasmask.github.io' },
-		{ label: 'facebook', url: 'https://www.facebook.com/corduroygasmask' },
-		{ label: 'instagram', url: 'https://www.instagram.com/corduroygasmask/' },
-		{ label: 'youtube', url: 'https://www.youtube.com/channel/UCYKLY3OlRk5l1MIfjAx-s4w' },
-	//	{ label: 'inst2', url: 'https://www.instagram.com/thedualityofrobot/' },
-		{ label: 'i don\'t use twiter', url: 'https://twitter.com/corduroygasmask' },
-		{ label: 'linkedin', url: 'https://www.linkedin.com/in/rfarley1/' },
 	];
 	var soc_links = [];
 	for(soc in socials) {
